@@ -33,7 +33,7 @@ Rails.application.routes.draw do
     get 'items/show'
   end
   namespace :public do
-    get 'homes/top'
+    get 'homes/top' => "homes#top"
     get 'homes/about'
   end
   # 顧客用
@@ -48,4 +48,8 @@ devise_for :customers,skip: [:passwords], controllers: {
 devise_for :admin, skip: [:registrations, :passwords], controllers: {
   sessions: "admin/sessions"
 }
+
+#root to: "public/homes#top"
+
 end
+
