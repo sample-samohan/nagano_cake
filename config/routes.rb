@@ -49,7 +49,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
   sessions: "admin/sessions"
 }
 
-#root to: "public/homes#top"
+root to: "public/homes#top"
 
 end
 
