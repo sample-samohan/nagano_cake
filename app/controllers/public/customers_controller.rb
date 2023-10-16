@@ -12,5 +12,6 @@ class Public::CustomersController < ApplicationController
   end
   
   def withdraw
+    
   end  
 end
