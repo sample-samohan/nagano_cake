@@ -13,7 +13,7 @@ Rails.application.routes.draw do
  }
 
 root to: 'public/homes#top'
- get 'public/homes/about' => "public/homes#about", as: :about
+ get 'homes/about' => "public/homes#about", as: :about
 
   namespace :admin do
     get 'homes/top' => 'homes#top'
