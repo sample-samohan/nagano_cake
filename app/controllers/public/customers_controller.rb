@@ -7,4 +7,10 @@ class Public::CustomersController < ApplicationController
 
   def update
   end
+  
+  def check
+  end
+  
+  def withdraw
+  end  
 end
