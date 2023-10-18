@@ -11,7 +11,7 @@
   </head>
 
   <body>
-    
+
     <header>
        <nav class="navbar navbar-expand">
           <div class = "container">
@@ -19,11 +19,11 @@
                   <%= link_to root_path do %>
                     <i class="fa-solid fa-apple-whole"></i>ながのCAKE
                   <% end %>
-                </div>    
-                  
-        
-        
-           
+                </div>
+
+
+
+
             <!--adimin login時header-->
             <% if admin_signed_in? %>
               <ul class="navbar-nav mt-3">
@@ -34,7 +34,7 @@
                 </li>
                 <li class="nav-item">
                   <%= link_to  admin_customers_path do %>
-                    <i class="fa-solid fa-users"></i>会員一覧 
+                    会員一覧
                   <% end %>
                 </li>
                 <li class="nav-item">
@@ -48,14 +48,17 @@
                   <% end %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to  destroy_admin_session_path do %>
-                    <i class="fa-solid fa-arrow-right-from-bracket">ログアウト
+                  <%= link_to  destroy_admin_session_path, method: :delete do %>
+                    ログアウト
                   <% end %>
                 </li>
               </ul>
-        
+
             <% elsif customer_signed_in? %>
               <ul class="navbar-nav mt-3">
+                <li class="customer_name">
+                  ようこそ！<%= current_customer.family_name %>さん
+                </li>
                 <li class="nav-item">
                   <%= link_to customers_mypage_path do %>
                     <i class="fa-solid fa-cake-candles"></i>マイページ
@@ -101,8 +104,8 @@
                 </li>
               </ul>
             <% end %>
-          </div>    
-       </nav> 
+          </div>
+       </nav>
     </header>
     <%= yield %>
     
