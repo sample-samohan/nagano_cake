@@ -2,7 +2,17 @@
 <div class="container">
     
     <div class="row">
-        <h1>商品一覧</h1>
+        <table>
+            <tr>
+                <th><h1>商品一覧</h1></th>
+                <td>
+                    <%= link_to new_admin_item_path do %>
+                        <i class="fa-solid fa-circle-plus"></i>
+                    <% end %>
+                </td>
+            </tr>
+        </table>
+        
     </div>
     <div class="row mx-auto 0">
         <table>
@@ -25,9 +35,15 @@
                             <%= item.name %>
                         <% end %>
                     </td>
-                    <td><%= item.non_taxed_price %></td>
-                    <td><%= item.genre %></td>
-                    <td><%= item.is_active %></td>
+                    <td><%= item.non_taxed_price.to_s(:delimited) %></td>
+                    <td><%= item.genre.name %></td>
+                    <td>
+                        <% if item.is_active %>
+                            <%= 販売中 %>
+                        <% else %>
+                            <%= 販売停止中 %>
+                        <% end %>
+                    </td>
                 </tr>
             </tbody>
             <% end %>

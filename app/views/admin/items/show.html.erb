@@ -19,7 +19,7 @@
                 </tr>
                 <tr>
                     <th>ジャンル</th>
-                    <td><%= @item.genre.id %></td>
+                    <td><%= @item.genre.name %></td>
                 </tr>
                 <tr>
                     <th>税抜価格</th>
@@ -27,10 +27,17 @@
                     
                 </tr>
                 <tr>
-                    <td><%= @item.is_active %></td>
+                    <th>販売ステータス</th>
+                    <td>
+                        <% if @item.is_active == true %>
+                             販売中
+                        <% else %>
+                            販売停止中
+                        <% end %>
+                    </td>
                 </tr>
                 <tr>
-                    <td><%= link_to 'edit', edit_admin_item_path(@item.id) %></td>
+                    <td><%= link_to 'edit', edit_admin_item_path(@item) %></td>
                 </tr>
             </table>
         </div>

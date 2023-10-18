@@ -12,6 +12,7 @@ class Admin::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
+      flash[:notice] = "商品の新規登録が完了しました。"
       redirect_to admin_item_path(@item)
     else
       render 'new'
@@ -29,6 +30,7 @@ class Admin::ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     if @item.save
+      flash[:notice] = "商品詳細の変更が完了しました。"
       redirect_to admin_item_path(@item)
     else
       render 'edit'
@@ -38,7 +40,7 @@ class Admin::ItemsController < ApplicationController
   private
   
   def item_params
-    params.require(:item).permit(:image, :name, :explanation, :genre, :non_taxed_price, :is_active)
+    params.require(:item).permit(:image, :name, :explanation, :genre_id, :non_taxed_price, :is_active)
   end
   
 end
