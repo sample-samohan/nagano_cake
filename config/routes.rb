@@ -39,6 +39,7 @@ root to: 'public/homes#top'
   
   scope module: :public do
  # customers
+   
    get  '/customers/mypage' => 'customers#show'
    get  '/customers/information/edit' => 'customers#edit'
    patch  '/customers/information' => 'customers#update'
@@ -46,6 +47,7 @@ root to: 'public/homes#top'
    get  '/customers/check' => 'customers#check'
  # 論理削除用のルーティング
    patch  '/customers/withdraw' => 'customers#withdraw'
+   resources :customers, only: [:show, :edit, :update]
    
    resources :orders, only: [:index, :show, :new, :create] 
     post 'orders/confirm' => 'orders#confirm', as: "confirm"
