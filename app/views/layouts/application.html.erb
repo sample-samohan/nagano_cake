@@ -56,6 +56,9 @@
 
             <% elsif customer_signed_in? %>
               <ul class="navbar-nav mt-3">
+                <li class="customer_name">
+                  ようこそ！<%= current_customer.family_name %>さん
+                </li>
                 <li class="nav-item">
                   <%= link_to customers_mypage_path do %>
                     マイページ
