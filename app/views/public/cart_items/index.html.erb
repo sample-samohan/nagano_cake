@@ -1,9 +1,20 @@
 <div class="container">
     <div class="row">
-        <h2>ショッピングカート</h2>
-        <!--カートを空にする-->
-        <div>
-            <%= link_to 'カートを空にする', cart_items_destroy_all_path, method: :delete, class: "btn btn-danger ms-3", data: { confirm: "本当に空にしていいですか？" } %>
+        <% if @cart_items.blank? %>
+            <h3>カート内に商品はございません</h3>
+            
+        <% else %>    
+            <div class="row">
+                
+            </div>
+            
+            
+            
+            
+            
+            <!--カートを空にする-->
+            <div>
+            <%= link_to 'カートを空にする', cart_items_destroy_all_path, method: :delete, class: "btn btn-danger ms-3", data: { confirm: "本当に空にしますか？" } %>
         </div>
     </div>
     
@@ -17,10 +28,24 @@
                 <th></th>
             </tr>
         </thead>
-        
-        
-        <tr>
-            <td><%= image_tag, cart_item.</td>
-        </tr>
+            
+        <tbody>
+            <% @cart_items.each do |cart_item| %>    
+            <tr>
+                <td><%= image_tag cart_item.item.get_item_image(100,100) %><%= cart_item.item.name %></td>
+                <td><%= cart_item.item.add_tax_non_taxed_price.to_s(:dalimited) %></td>
+                <td>
+                    <%= form_with(model: cart_item, url: cart_item_path(cart_item), method: :patch, local: false, class: "text-center") do |f| %>
+                    <%= f.hidden_field :customer_id, :value => current_customer.id %>
+                    <%= f.select :amount, *[1..50],{}, class: "form-select-sm" %>
+                    <%= f.submit "変更", class: "btn btn-success" %>
+                </td>
+                <td><%= (Item.find(cart_item.item_id).non_taxed_price * 1.1 * cart_item.amount).to_i %></td>
+                <td><%= link_to '削除', cart_item_path(cart_item), method: :delete, class: "btn btn-danger", data: { confirm: "本当に削除しますか？" }   %></td>
+            </tr>
+            <% end %>    
+        </tbody>
     </table>
+    
+    
 </div>
