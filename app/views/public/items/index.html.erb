@@ -1,16 +1,30 @@
 <div class="container">
-  <h2>商品一覧</h2>
-  <h5>（全<%= @items.count %>件）</h5>
-  
-  <% @items.each do |item| %>
-    <%= image_tag item.image,size: "100x100" %>
-    <%= item.name %>
-    <%= item.non_taxed_price %>
-  <% end %>
-  <!--%= paginate @items %-->
-  
-  
+  <div class="row">
+    <table>
+      <thead>
+        <tr>
+          <th><h2>商品一覧</h2>
+            <h5>（全<%= @items.count %>件）</h5>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @items.each do |item| %>
+        <tr>
+          <td><%= image_tag item.image,size: "200x200" %></td>
+        <tr>
+          <td> <%= item.name %></td>
+        </tr>
+        <tr>
+          <td> <%= item.name %></td>
+        </tr>
+        <tr>
+          <td>¥<%= item.non_taxed_price %></td>
+        </tr>  
+        <% end %>
+      </tbody>
 
-    
-  
+    </table>
+   <%= paginate @items %>
+  </div>
 </div>
