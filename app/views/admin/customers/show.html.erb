@@ -1,11 +1,11 @@
 <div class='container mt-5'>
   <div class='row'>
     <div class='col-md-4 '>
-      <h4><strong><%= "#{@customer.first_name} #{@counter.last_name}" %></strong>さんの会員情報</h4>
+      <h4><strong><%= "#{@customer.family_name} #{@customer.first_name}" %></strong>さんの会員情報</h4>
     </div>
     
     <div class='col-md-6 offset-md-1'>
-     <table class="table table-borderless" style="background-color: rgba(213, 206, 163,0.4);">
+     <table class="table table-borderless">
       <thead>
         <tr>
           <th scope="col" style="width: 50%"></th>
@@ -19,7 +19,7 @@
       </tr>
       <tr>
         <td>氏名</td>
-        <td><%= "#{@customer.first_name} #{@counter.last_name}" %></td>
+        <td><%= "#{@customer.family_name} #{@customer.first_name}" %></td>
       </tr>
          <td>郵便番号</td>
          <td><%= @customer.post_code %></td>
@@ -47,7 +47,7 @@
       </tr>
       <div class="mt-3">
         <td><%= link_to "編集する", edit_admin_customer_path(@customer.id), class: "btn change_button mt-3", style: "margin-right:3em; background-color: #D5CEA3;"%></td>
-        <td> <%= link_to "注文履歴一覧を見る",order_admin_customer_path(@customer.id),class: "btn mt-3", style: "background-color: #1A120B; color: #E5E5CB;"%></td>
+        <td> <%= link_to "注文履歴一覧を見る",order_path(@customer.id),class: "btn mt-3", style: "background-color: #1A120B; color: #E5E5CB;"%></td>
       </div>
      </tbody>
     </table>
