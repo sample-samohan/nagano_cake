@@ -3,7 +3,7 @@
   <h5>（全<%= @items.count %>件）</h5>
   
   <% @items.each do |item| %>
-    <!--%= image_tag item.image(100,100) %-->
+    <%= image_tag item.image,size: "100x100" %>
     <%= item.name %>
     <%= item.non_taxed_price %>
   <% end %>
