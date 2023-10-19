@@ -11,15 +11,16 @@
       <tbody>
         <% @items.each do |item| %>
         <tr>
-          <td><%= image_tag item.image,size: "200x200" %></td>
+          <td><%= link_to item_path(item.id) do %> 
+            <%= image_tag item.image,size: "200x200" %>
+          <% end %></td>
         <tr>
-          <td> <%= item.name %></td>
+          <td><%= link_to item_path(item.id) do %> 
+             <%= item.name %>
+          <% end %></td>  
         </tr>
         <tr>
-          <td> <%= item.name %></td>
-        </tr>
-        <tr>
-          <td>¥<%= item.non_taxed_price %></td>
+          <td>¥<%= (item.non_taxed_price*1.1).to_i %></td>
         </tr>  
         <% end %>
       </tbody>
