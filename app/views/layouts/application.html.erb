@@ -24,12 +24,12 @@
 
 
 
-            <!--adimin login時header-->
+            <!--admin login時header-->
             <% if admin_signed_in? %>
               <ul class="navbar-nav mt-3">
                 <li class="nav-item">
-                  <%= link_to items_path do %>
-                    <i class="fa-solid fa-cookie-bite">商品一覧
+                  <%= link_to admin_items_path do %>
+                    <i class="fa-solid fa-cookie-bite"></i>商品一覧
                   <% end %>
                 </li>
                 <li class="nav-item">
@@ -38,7 +38,7 @@
                   <% end %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to do %>
+                  <%= link_to admin_order_path do %>
                     <i class="fa-solid fa-list"></i>注文履歴一覧
                   <% end %>
                 </li>
@@ -54,7 +54,8 @@
                 </li>
               </ul>
 
-            <% elsif customer_signed_in? %>
+            <!--customer login時-->
+            <% elsif customer_signed_in? %> 
               <ul class="navbar-nav mt-3">
                 <li class="customer_name">
                   ようこそ！<%= current_customer.family_name %>さん
@@ -80,6 +81,8 @@
                   <% end %>
                 </li>
               </ul>
+              
+            　  
             <% else %>
               <ul class="navbar-nav mt-3">
                 <li class="nav-item">
@@ -112,7 +115,6 @@
     <footer class="container mt-5">
       <div class="row justify-content-center">
         <i class="fa-regular fa-copyright">TEAM SAMOHAN</i>
-      </div>
       </div>
     </footer>
   </body>
