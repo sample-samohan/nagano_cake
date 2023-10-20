@@ -1,18 +1,19 @@
 class Public::OrdersController < ApplicationController
-before_action :authenticate_member!, only: [:new, :confirm, :create, :index, :show, :complete]
+  #before_action :order_is_valid,only:[:new, :confirm, :create]
+  #before_action :authenticate_member!, only: [:new, :confirm, :create, :index, :show, :complete]
     
     def new
     end
     
     def confirm
-      @cart_items = CartItem.where(member_id: current_member.id)
+      @cart_items = CartItem.where(customer_id: current_customer.id)
       @shipping_fee = 800 #送料は800円で固定
-      @selected_pay_method = params[:order][:pay_method]
+      @selected_pay_method = params[:order][:payment_method]
       
       #以下、商品合計額の計算
       ary = []
       @cart_items.each do |cart_item|
-        ary << cart_item.item.price*cart_item.quantity
+        ary << cart_item.item.add_tax_non_taxed_price * cart_item.amount
       end
       @cart_items_price = ary.sum
       
@@ -20,7 +21,7 @@ before_action :authenticate_member!, only: [:new, :confirm, :create, :index, :sh
       @address_type = params[:order][:address_type]
       case @address_type
       when "member_address"
-        @selected_address = current_member.post_code + " " + current_member.address + " " + current_member.family_name + current_member.first_name
+        @selected_address = current_customer.post_code + " " + current_customer.address + " " + current_customer.family_name + current_customer.first_name
       when "registered_address"
         unless params[:order][:registered_address_id] == ""
           selected = Address.find(params[:order][:registered_address_id])
@@ -95,12 +96,14 @@ before_action :authenticate_member!, only: [:new, :confirm, :create, :index, :sh
     end
     
     def show
-      @order = Order.find(params[:id])
-      @order_details= OrderDetail.where(order_id: @order.id)
+     @order = Order.find(params[:id])
+    @order_details= OrderDetail.where(order_id: @order.id)
     end 
     
     def complete
       
     end
+    
+    
     
 end 
