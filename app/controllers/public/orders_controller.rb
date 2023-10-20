@@ -1,5 +1,5 @@
 class Public::OrdersController < ApplicationController
-  before_action :authenticate_member!, only: [:new, :confirm, :create, :index, :show, :complete]
+before_action :authenticate_member!, only: [:new, :confirm, :create, :index, :show, :complete]
     
     def new
     end
@@ -7,7 +7,7 @@ class Public::OrdersController < ApplicationController
     def confirm
       @cart_items = CartItem.where(member_id: current_member.id)
       @shipping_fee = 800 #送料は800円で固定
-      @selected_pay_method = params[:order][:pey_method]
+      @selected_pay_method = params[:order][:pay_method]
       
       #以下、商品合計額の計算
       ary = []
@@ -18,24 +18,24 @@ class Public::OrdersController < ApplicationController
       
       @total_price = @shipping_fee + @cart_items_price
       @address_type = params[:order][:address_type]
-        case @address_type
-          when "member_address"
-            @selected_address = current_member.post_code + " " + current_member.address + " " + current_member.family_name + current_member.first_name
-          when "registered_address"
-          unless params[:order][:registered_address_id] == ""
-            selected = Address.find(params[:order][:registered_address_id])
-            @selected_address = selected.post_code + " " + selected.address + " " + selected.name
-	        else	 
-	          render :new
-	        end
-          when "new_address"
-           unless params[:order][:new_post_code] == "" && params[:order][:new_address] == "" && params[:order][:new_name] == ""
-	          @selected_address = params[:order][:new_post_code] + " " + params[:order][:new_address] + " " + params[:order][:new_name]
-	         else
-	        render :new
-	      end
-        end     
-    #end
+      case @address_type
+      when "member_address"
+        @selected_address = current_member.post_code + " " + current_member.address + " " + current_member.family_name + current_member.first_name
+      when "registered_address"
+        unless params[:order][:registered_address_id] == ""
+          selected = Address.find(params[:order][:registered_address_id])
+          @selected_address = selected.post_code + " " + selected.address + " " + selected.name
+        else
+         render :new
+        end
+      when "new_address"
+        unless params[:order][:new_post_code] == "" && params[:order][:new_address] == "" && params[:order][:new_name] == ""
+          @selected_address = params[:order][:new_post_code] + " " + params[:order][:new_address] + " " + params[:order][:new_name]
+        else
+          render :new
+        end
+      end     
+    end
     
     def create
       @order = Order.new
@@ -57,23 +57,23 @@ class Public::OrdersController < ApplicationController
       
       address_type = params[:order][:address_type]
       case address_type
-        when "member_address"
+      when "member_address"
       @order.post_code = current_member.post_code
       @order.address = current_member.address
       @order.name = current_member.family_name + current_member.first_name
-        when "registered_address"
-      Addresse.find(params[:order][:registered_address_id])
-      selected = Address.find(params[:order][:registered_address_id])
+      when "registered_address"
+      Address.find(params[:order][:registered_address_id])
+      selected = Addresse.find(params[:order][:registered_address_id])
       @order.post_code = selected.post_code
       @order.address = selected.address
       @order.name = selected.name
-        when "new_address"
+      when "new_address"
       @order.post_code = params[:order][:new_post_code]
       @order.address = params[:order][:new_address]
       @order.name = params[:order][:new_name]
       end
     
-    if @order.save
+     if @order.save
       if @order.status == 0
         @cart_items.each do |cart_item|
           OrderDetail.create!(order_id: @order.id, item_id: cart_item.item.id, price: cart_item.item.price, quantity: cart_item.quantity, making_status: 0)
@@ -85,14 +85,13 @@ class Public::OrdersController < ApplicationController
       end
       @cart_items.destroy_all
       redirect_to complete_orders_path
-    else
+     else
       render :items
-    end
+     end
     end    
     
-    
     def index
-      @orders = Order.where(member_id: current_member.id).order(created_at: :desc).
+      @orders = Order.where(member_id: current_member.id).order(created_at: :desc)
     end
     
     def show
@@ -101,6 +100,7 @@ class Public::OrdersController < ApplicationController
     end 
     
     def complete
+      
     end
     
 end 
