@@ -1,25 +1,28 @@
-<div class="container">
-  <div class="row mx-auto">
-    <div class="col-mx-3">
+<div class="containe mt-5 mb-5">
+  <div class="row">
+
+    <div class="col-md-3">
+      <div></div>
       <!--%= render 'ジャンル検索', genres: @genres %-->
     </div>
-    <div class="col-mx-3">
+    <div class="col-md3">
       <%= image_tag(@item.image, size: "150*150") %>
     </div>
-    <div class="col-mx-4 offset-xs-2">
+
+    <div class="col-md4 offset-md-2">
       <h3><%= @item.name %></h3><br>
       <p><%= @item.explanation %></p><br>
       <h5>¥<%= (@item.non_taxed_price * 1.1).to_i %>（税込）</h5>
 
-      <%= form_with(model: @cart_items, url: cart_items_path, method: :post, local: true) do |f| %>
+      <%= form_with(model: @cart_item, url: cart_items_path, method: :post, local: true) do |f| %>
 
           <%= f.label :amount, '個数選択' %>
-          <%= f.select :amount, *[1..20], { include_blank: '選択してください'}, { class: 'form-control', required: true } %>
-          <%= f.hidden_field :id, :value => @item.id %>
+          <%= f.select :amount, (1..20), { include_blank: '選択してください' }, { class: 'form-control', required: true } %>
+          <%= f.hidden_field :id, value: @item.id %>
           <%= f.submit 'カートに入れる', class: 'btn btn-primary btn-block' %>
 
       <% end %>
-
     </div>
+
   </div>
 </div>
