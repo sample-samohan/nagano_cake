@@ -1,8 +1,8 @@
 class Public::CartItemsController < ApplicationController
-  before_action :authenticate_customer!
+  
   def create
     @cart_items = current_customer.cart_items.all
-    if params[:cart_item].present? && params[:cart_item][:amount].present?
+    if cart_items_params[:amount] != ""
       if @cart_items.any? { |cart_item| cart_item.item_id == params[:cart_item][:id].to_i}
         @cart_item_already = CartItem.find_by(item_id: params[:cart_item][:id].to_i)
         @cart_item_already.amount += params[:cart_item][:amount].to_i
@@ -61,7 +61,7 @@ class Public::CartItemsController < ApplicationController
 private
 
   def cart_items_params
-    params.require(:cart_item).permit(:customer_id, :item_id, :amount)
+    params.require(:cart_item).permit(:amount, :item_id)
   end
 
 end
