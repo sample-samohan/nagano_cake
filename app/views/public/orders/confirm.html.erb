@@ -19,9 +19,9 @@
             <%= image_tag cart_item.item.image, size: "100x80" %>
             <strong><%= cart_item.item.name %></strong>
           </td>
-          <td><%= cart_item.item.add_tax_non_taxed_price %></td>
+          <td><%= (cart_item.item.add_tax_non_taxed_price).to_s(:delimited)  %></td>
           <td><%= cart_item.amount %></td>
-          <td><%= cart_item.item.add_tax_non_taxed_price * cart_item.amount %></td>
+          <td><%= (cart_item.item.add_tax_non_taxed_price * cart_item.amount).to_s(:delimited)  %></td>
         <% end %>
       </tr>
         
@@ -35,22 +35,23 @@
       </tr>
       <tr>
         <td>商品合計</td>
-        <td><%= @cart_items_price %></td>
+        <td><%= @cart_items_price.to_s(:delimited)  %></td>
       </tr>
       <tr>
         <td>請求額</td>
-        <td><%= @total_price %></td>
+        <td><%= @total_price.to_s(:delimited)  %></td>
       </tr>
     </table>
 
     <h4>支払い方法</h4>
-
-    <% if @selected_pay_method == "credit_card" %>
-      クレジットカード
-    <% else %>
-      銀行振込
-    <% end %>
-
+    <div>
+      <% if @selected_pay_method == "credit_card" %>
+        クレジットカード
+      <% else %>
+        銀行振込
+      <% end %>
+    </div>
+    
     <h4>お届け先</h4>
     <%= @selected_address %>
 
@@ -70,6 +71,6 @@
     <% end %>
   </div>
 
-    <!--%= render 'public/shared/footer.html.erb' %>-->
+    
   </div>
 </div>
