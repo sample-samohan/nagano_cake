@@ -1,6 +1,5 @@
 class Public::OrdersController < ApplicationController
-  #before_action :order_is_valid,only:[:new, :confirm, :create]
-  #before_action :authenticate_member!, only: [:new, :confirm, :create, :index, :show, :complete]
+  before_action :authenticate_customer!, only: [:new, :confirm, :create, :index, :show, :complete]
     
     def new
       @order = Order.new
@@ -44,6 +43,7 @@ class Public::OrdersController < ApplicationController
         end
     end
     
+
     def create
       @order = Order.new
       @order.customer_id = current_customer.id
@@ -63,18 +63,20 @@ class Public::OrdersController < ApplicationController
         @order.status = 0
       end
       
-      address_type = params[:order][:address_type]
+      address_type = params[:order][:address_type] 
       case address_type
       when "customer_address"
         @order.post_code = current_customer.post_code
         @order.address = current_customer.address
         @order.name = current_customer.family_name + current_costomer.first_name
       when "registered_address"
+
         Address.find(params[:order][:registered_address_id])
         selected = Address.find(params[:order][:registered_address_id])
         @order.post_code = selected.post_code
         @order.address = selected.address
         @order.name = selected.name
+
       when "new_address"
         @order.post_code = params[:order][:new_post_code]
         @order.address = params[:order][:new_address]
@@ -103,8 +105,6 @@ class Public::OrdersController < ApplicationController
     end
     
     def show
-     @order = Order.find(params[:id])
-    @order_details= OrderDetail.where(order_id: @order.id)
     end 
     
     def complete
