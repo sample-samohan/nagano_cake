@@ -24,18 +24,21 @@ class Public::OrdersController < ApplicationController
         case @address_type
         when "customer_address"
           @selected_address = current_customer.post_code + " " + current_customer.address + " " + current_customer.family_name + current_customer.first_name
+        
         when "registered_address"
           unless params[:order][:registered_address_id] == ""
-            selected = Address.find(params[:order][:registered_address_id])
+          selected = Address.find(params[:order][:registered_address_id])
           @selected_address = selected.post_code + " " + selected.address + " " + selected.name
           else
             render :new
           end
+        
         when "new_address"
           unless params[:order][:new_post_code] == "" && params[:order][:new_address] == "" && params[:order][:new_name] == ""
-            @selected_address = params[:order][:new_post_code] + " " + params[:order][:new_address] + " " + params[:order][:new_name]
+          @selected_address = params[:order][:new_post_code] + " " + params[:order][:new_address] + " " + params[:order][:new_name]
+         
           else
-          render :new
+            render :new
           end
         end
     end
@@ -63,19 +66,21 @@ class Public::OrdersController < ApplicationController
       address_type = params[:order][:address_type] 
       case address_type
       when "customer_address"
-      @order.post_code = current_customer.post_code
-      @order.address = current_customer.address
-      @order.name = current_costomer.family_name + current_costomer.first_name
+        @order.post_code = current_customer.post_code
+        @order.address = current_customer.address
+        @order.name = current_customer.family_name + current_costomer.first_name
       when "registered_address"
-      Address.find(params[:order][:registered_address_id]) 
-      selected = Address.find(params[:order][:registered_address_id])
-      @order.post_code = selected.post_code
-      @order.address = selected.address
-      @order.name = selected.name
+
+        Address.find(params[:order][:registered_address_id])
+        selected = Address.find(params[:order][:registered_address_id])
+        @order.post_code = selected.post_code
+        @order.address = selected.address
+        @order.name = selected.name
+
       when "new_address"
-      @order.post_code = params[:order][:new_post_code]
-      @order.address = params[:order][:new_address]
-      @order.name = params[:order][:new_name]
+        @order.post_code = params[:order][:new_post_code]
+        @order.address = params[:order][:new_address]
+        @order.name = params[:order][:new_name]
       end
     
      if @order.save
@@ -96,7 +101,7 @@ class Public::OrdersController < ApplicationController
     end    
     
     def index
-      @orders = Order.where(member_id: current_member.id).order(created_at: :desc)
+      @orders = Order.where(custom_id: current_customer.id).order(created_at: :desc)
     end
     
     def show

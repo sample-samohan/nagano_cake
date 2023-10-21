@@ -48,6 +48,7 @@ root to: 'public/homes#top'
  # 論理削除用のルーティング
    patch  '/customers/withdraw' => 'customers#withdraw'
    resources :customers, only: [:show, :edit, :update]
+
    get 'orders/confirm' => 'orders#confirm'
    resources :orders, only: [:index, :show, :new, :create] do
        collection do
