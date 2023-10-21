@@ -44,7 +44,7 @@ class Public::OrdersController < ApplicationController
         render :new
       end
     end
-
+  end
   
     def create
       @order = Order.new
