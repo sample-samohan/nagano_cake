@@ -1,7 +1,9 @@
 class Public::OrdersController < ApplicationController
-before_action :authenticate_member!, only: [:new, :confirm, :create, :index, :show, :complete]
+before_action :authenticate_customer!, only: [:new, :confirm, :create, :index, :show, :complete]
     
     def new
+      @order = Order.new
+      @customer = Customer.find(current_customer.id)
     end
     
     def confirm
@@ -101,6 +103,12 @@ before_action :authenticate_member!, only: [:new, :confirm, :create, :index, :sh
     
     def complete
       
+    end
+    
+    private
+
+    def order_params
+    params.require(:order).permit(:customer_id, :post_code, :address, :name, :payment_method, :status, :posttage, :total_amount)
     end
     
 end 
