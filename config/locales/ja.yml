@@ -9,10 +9,13 @@ ja:
         confirmation_of_payment: "入金確認"
         in_production: "製作中"
         preparing_to_ship: "発送準備中"
-        shipped: "発送済み"
-
-        
-        
+        shipped: "発送済み" 
+    order_details:
+      production_status:
+        unable_to_start: "着手不可"
+        waiting_for_production: "製作待ち"
+        in_production: "製作中"
+        completion_of_production: "制作完了
   activerecord:
     errors:
       messages:
@@ -194,4 +197,3 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
-    

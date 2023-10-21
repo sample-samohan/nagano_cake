@@ -64,7 +64,7 @@ root to: 'public/homes#top'
   end
 
     
- 
+   get '/genre/search' => 'searches#genre_search'
     
     #get 'orders/show'
     #get 'orders/new'
