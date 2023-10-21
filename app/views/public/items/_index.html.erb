@@ -1,0 +1,15 @@
+<% items.each do |item| %>
+ <div class="col-md-3">
+  <div>
+    <p>
+      <%= link_to item_path(item) do %>
+       <div class="image-box">
+        <%= image_tag item.image,size: "200x200" %>
+       </div>
+      <% end %>
+    </p>
+    <p><strong><%= item.name %></strong></p>
+    <p><strong><%= (item.non_taxed_price*1.1).to_i %></strong></p>
+  </div>
+ </div>
+<% end %>

@@ -48,11 +48,13 @@ root to: 'public/homes#top'
  # 論理削除用のルーティング
    patch  '/customers/withdraw' => 'customers#withdraw'
    resources :customers, only: [:show, :edit, :update]
-   
-         get 'orders/confirm' => 'orders#confirm'
-         post 'orders/confirm' => 'orders#confirm'
-         get 'orders/complete' => 'orders#complete'
-   resources :orders, only: [:index, :show, :new, :create]     
+   get 'orders/confirm' => 'orders#confirm'
+   resources :orders, only: [:index, :show, :new, :create] do
+       collection do
+         post 'confirm'
+         get 'completed'
+        end
+    end    
    resources :items, only: [:index, :show]
     
    resources :cart_items, only: [:index, :update, :destroy, :create]

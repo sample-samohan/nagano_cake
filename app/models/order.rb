@@ -4,8 +4,7 @@ class Order < ApplicationRecord
     
     validates :payment_method, :name, :post_code, :address, presence: true
     
-  has_many :orders, dependent: :destroy
-  belongs_to :customer
+  
    
    
    
