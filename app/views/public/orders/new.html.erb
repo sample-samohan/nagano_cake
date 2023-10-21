@@ -30,7 +30,7 @@
                 <%= radio_button_tag(:selected_address, :radio2) %>
                 <%= label_tag(:selected_address, "登録済住所から選択") %>
                 <p>&emsp;
-                <%= collection_select(:regestrated_address, :regestrated_address, current_customer.addresses.all, :id, :full_address, prompt: "住所を選択してください" )%>
+                <%= collection_select(:regestrated_address, :regestrated_address, current_customer.addresses.all, :id, :address, prompt: "住所を選択してください" )%>
                 </p>
               </div>
               <div class="radio">
