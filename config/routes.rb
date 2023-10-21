@@ -49,10 +49,11 @@ root to: 'public/homes#top'
    patch  '/customers/withdraw' => 'customers#withdraw'
    resources :customers, only: [:show, :edit, :update]
    
-   resources :orders, only: [:index, :show, :new, :create]
+   
     get 'orders/confirm' => 'orders#confirm'
     post 'orders/confirm' => 'orders#confirm'#, as: "confirm"
     get 'orders/complete' => 'orders#complete'#, as: "complete"
+    resources :orders, only: [:index, :show, :new, :create]
    resources :items, only: [:index, :show]
     
    resources :cart_items, only: [:index, :update, :destroy, :create]

@@ -1,6 +1,6 @@
 <div class="container p-3">
   <div class="row">
-  <!--% render 'public/shared/header.html.erb' %>-->
+  
   <h3>注文情報確認</h3>
   <div class="col-md-12">
     
@@ -12,8 +12,9 @@
         <td>数量</td>
         <td>小計</td>
       </tr>
-      <% @cart_items.each do |cart_item| %>
-        <tr>
+      
+      <tr>
+        <% @cart_items.each do |cart_item| %>  
           <td>
             <%= image_tag cart_item.item.image, size: "100x80" %>
             <strong><%= cart_item.item.name %></strong>
@@ -21,8 +22,10 @@
           <td><%= cart_item.item.add_tax_non_taxed_price %></td>
           <td><%= cart_item.amount %></td>
           <td><%= cart_item.item.add_tax_non_taxed_price * cart_item.amount %></td>
-        </tr>
-      <% end %>
+        <% end %>
+      </tr>
+        
+      
     </table>
 
     <table class="table">
@@ -67,6 +70,6 @@
     <% end %>
   </div>
 
-    <!--%= render 'public/shared/footer.html.erb' %>-->
+    
   </div>
 </div>
