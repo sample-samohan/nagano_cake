@@ -83,8 +83,10 @@ class Public::OrdersController < ApplicationController
         @cart_items.each do |cart_item|
           OrderDetail.create!(order_id: @order.id, item_id: cart_item.item.id, price: , amount: cart_item.amount, making_status: 0)
         end
+
       @cart_items.destroy_all
       redirect_to complete_orders_path
+
      else
       render 'new'
      end
