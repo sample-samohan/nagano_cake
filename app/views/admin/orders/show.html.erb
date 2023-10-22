@@ -1,18 +1,35 @@
 <div class="container">
   <div class="row">
-    <h2>注文履歴一覧</h2>
+    <h2>注文履歴詳細</h2>
     <div class="col-xs-10 col-xs-offset-1">
-      <table class="table">
-        <thead>
-          <tr class="table-head" style="background-color:#a7b19b;">
-            <th scope="col">購入日時</th>
-            <th scope="col">購入者</th>
-            <th scope="col">注文個数</th>
-            <th scope="col">注文ステータス</th>
-          </tr>
-        </thead>
+      <table class="table table-borderless">
         <tbody>
-          
+          <tr>
+            <th scope="col">購入者</th>
+            <th scope="col"><%= link_to @order.customer.family_name + @order.customer.first_name, admin_customers_path(@order.customer.id) %></th>
+          </tr>  
+          <tr>
+            <th scope="col">注文日</th>
+            <th scope="col"><%= @order.created_at.strftime('%Y/%m/%d %H:%M:%S') %></th>
+          </tr>
+          <tr>
+            <th>配送先</th>
+            <th><%= @order.post_code %><%= @order.address %></th>
+          </tr>
+          <tr>
+            <th>支払い方法</th>
+            <th><%= @order.payment_method %></th>
+          </tr>
+          <tr>
+            <th>注文ステータス</th>
+            <td>
+              <%= form_with(model: @order, url: admin_orders_path(@order), method: :patch, local: true) do |f| %>
+                <%= f.select :order_status, Order.order_statuses.keys.to_a, {} %>
+                <%= f.hidden_field :id, :value => @order.id %>
+                <%= f.submit "更新", class:"byn btn-primary" %>
+              <% end %>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>

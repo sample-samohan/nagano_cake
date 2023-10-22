@@ -3,11 +3,7 @@
   <div class="col-md-4 headline">
 
     <h3>注文情報入力</h3>
-
-
     <%= form_with model: @order, url: confirm_orders_path, local:true do |f|  %>
-
-
       <table class="table">
         <tbody>
           <tr>
@@ -16,8 +12,7 @@
               <div class="radio">
 
                 <%= f.radio_button :payment_method, :credit_card, checked: true %>
-                <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card], {value: :credit_card} %>
-                
+                <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card], {value: :credit_card} %>    
                 <%= f.radio_button :payment_method, :transfer %>
                 <%= f.label :payment_method, Order.payment_methods_i18n[:transfer], {value: :transfer} %>
 
@@ -26,7 +21,7 @@
           </tr>
           <tr>
             <th scope="row">お届け先</th>
-            <td>        
+            <td>
               <div class="radio">
                 <%= f.radio_button :address_type, "customer_address", checked: true %>
                 <%= f.label :address_type, "ご自身の住所" %>
@@ -43,31 +38,27 @@
               <div class="radio">
                 <%= f.radio_button :address_type, "new_address" %>
                 <%= f.label :address_type, "新しいお届け先" %>
-              </div>  
-                
+              </div>
+
               <div class="field">
                   郵便番号(ハイフンなし)
-              </div>
-              
+              </div>        
                 <%= f.text_field :new_post_code, placeholder: "0000000", class: "mt-1" %>
               </div>
                   
               <div class="field">
                   住所
-              </div>    
+              </div>
               <div>
                 <%= f.text_field :new_address, class: "w-75", placeholder: "東京都新宿区1-2-3", class: "w-100 mr-1 ml-1" %>
-              </div>    
-                  
-              </div>
+              </div>       
                 <div class="field">
                   宛名
-                </div>  
+                </div>
                 <div>
                   <%= f.text_field :new_name, placeholder: "平成太郎", class: "mb-2 ml-1 mt-1" %>
-                </div>  
-                
-                  
+                </div> 
+          　
           </tr>
         </tbody>
       </table>
