@@ -3,13 +3,12 @@ class Public::OrdersController < ApplicationController
     
     def new
       @order = Order.new
-      @customer = Customer.find(current_customer.id)
     end
     
     def confirm
       @cart_items = CartItem.where(customer_id: current_customer.id)
       @shipping_fee = 800 #送料は800円で固定
-      @selected_pay_method = params[:order][:payment_method]
+      @selected_payment_method = params[:order][:payment_method]
       
       #商品合計額の計算
       ary = []
@@ -35,7 +34,7 @@ class Public::OrdersController < ApplicationController
         
         when "new_address"
           unless params[:order][:new_post_code] == "" && params[:order][:new_address] == "" && params[:order][:new_name] == ""
-          @selected_address = params[:order][:new_postal_code] + " " + params[:order][:new_address] + " " + params[:order][:new_name]
+          @selected_address = params[:order][:new_post_code] + " " + params[:order][:new_address] + " " + params[:order][:new_name]
           else
             render :new
           end
@@ -57,9 +56,9 @@ class Public::OrdersController < ApplicationController
       
       @order.payment_method = params[:order][:payment_method]
       if @order.payment_method == "credit_card"
-        @order.status = 1
-      else
         @order.status = 0
+      else
+        @order.status = 1
       end
       
       address_type = params[:order][:address_type] 
@@ -67,15 +66,13 @@ class Public::OrdersController < ApplicationController
       when "customer_address"
         @order.post_code = current_customer.post_code
         @order.address = current_customer.address
-        @order.name = current_customer.family_name + current_costomer.first_name
+        @order.name = current_customer.family_name + current_customer.first_name
       when "registered_address"
-
         Address.find(params[:order][:registered_address_id])
         selected = Address.find(params[:order][:registered_address_id])
         @order.post_code = selected.post_code
         @order.address = selected.address
         @order.name = selected.name
-
       when "new_address"
         @order.post_code = params[:order][:new_post_code]
         @order.address = params[:order][:new_address]
@@ -83,27 +80,23 @@ class Public::OrdersController < ApplicationController
       end
     
      if @order.save
-      if @order.status == 0
         @cart_items.each do |cart_item|
-          OrderDetail.create!(order_id: @order.id, item_id: cart_item.item.id, price: cart_item.item.add_tax_non_taxed_price, amount: cart_item.amount, making_status: 0)
+          OrderDetail.create!(order_id: @order.id, item_id: cart_item.item.id, price: , amount: cart_item.amount, making_status: 0)
         end
-      else
-        @cart_items.each do |cart_item|
-          OrderDetail.create!(order_id: @order.id, item_id: cart_item.item.id, price: cart_item.item.add_tax_non_taxed_price, amount: cart_item.amount, making_status: 1)
-        end
-      end
       @cart_items.destroy_all
       redirect_to complete_orders_path
      else
-      render 'new_order_path'
+      render 'new'
      end
     end    
     
     def index
-      @orders = Order.where(custom_id: current_customer.id).order(created_at: :desc)
+      @orders = current_customer.orders.all.page(params[:page]).per(5).order(created_at: :DESC)
     end
     
     def show
+      @order = current_customer.orders.find(params[:id])
+      @order_details= OrderDetail.where(order_id: @order.id)
     end 
     
     def complete
@@ -113,7 +106,7 @@ class Public::OrdersController < ApplicationController
     private
 
     def order_params
-    params.require(:order).permit(:customer_id, :post_code, :address, :name, :payment_method, :status, :posttage, :total_amount)
+    params.require(:order).permit(:customer_id, :post_code, :address, :name, :payment_method, :status, :postage, :total_amount)
     end
     
 end 

@@ -4,7 +4,7 @@
 
     <h3>注文情報入力</h3>
 
-    <%= form_with model: @order, url: confirm_orders_path, method: :get do |f|  %>
+    <%= form_with model: @order, url: confirm_orders_path, local:true do |f|  %>
 
       <table class="table">
         <tbody>
@@ -16,7 +16,7 @@
                 <%= f.radio_button :payment_method, :credit_card, checked: true %>
                 <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card], {value: :credit_card} %>
                 
-                <%= f.radio_button :payment_method, 1 %>
+                <%= f.radio_button :payment_method, :transfer %>
                 <%= f.label :payment_method, Order.payment_methods_i18n[:transfer], {value: :transfer} %>
 
               </div>
@@ -29,8 +29,8 @@
                 <%= f.radio_button :address_type, "customer_address", checked: true %>
                 <%= f.label :address_type, "ご自身の住所" %>
 
-                <p>&emsp;<%= @customer.post_code %><%= @customer.address %></p>
-                <p>&emsp;<%= @customer.family_name %><%= @customer.first_name %></p>
+                <p>&emsp;<%= current_customer.post_code %><%= current_customer.address %></p>
+                <p>&emsp;<%= current_customer.family_name %><%= current_customer.first_name %></p>
 
               </div>
               <div class="radio">
@@ -47,7 +47,7 @@
                   郵便番号(ハイフンなし)
               </div>
               
-                <%= f.text_field :new_postal_code, placeholder: "0000000", class: "mt-1" %>
+                <%= f.text_field :new_post_code, placeholder: "0000000", class: "mt-1" %>
               </div>
                   <!--<label class="postal-code-label">郵便番号(ハイフンなし)</label>-->
                   <!--%= f.text_field :post_code, autofocus: true, class:""%>-->
