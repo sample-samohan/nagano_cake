@@ -35,8 +35,7 @@ class Public::OrdersController < ApplicationController
         
         when "new_address"
           unless params[:order][:new_post_code] == "" && params[:order][:new_address] == "" && params[:order][:new_name] == ""
-          @selected_address = params[:order][:new_post_code] + " " + params[:order][:new_address] + " " + params[:order][:new_name]
-         
+          @selected_address = params[:order][:new_postal_code] + " " + params[:order][:new_address] + " " + params[:order][:new_name]
           else
             render :new
           end
