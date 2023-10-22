@@ -55,7 +55,7 @@
     <h4>お届け先</h4>
     <%= @selected_address %>
 
-    <%= form_with url: orders_path, method: :post do %>
+    <%= form_with model: @order, url: completed_orders_path, method: :post do %>
 
       <%= hidden_field_tag 'order[pay_method]', @selected_pay_method %>
       <%= hidden_field_tag 'order[address_type]', @address_type %>
