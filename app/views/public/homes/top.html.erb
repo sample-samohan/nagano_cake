@@ -1,9 +1,9 @@
-<div class= 'container'>
-  <div class='row mt-5 justify-content-center'>
+<div class= 'container mt-5'>
+  <div class='row'>
     <div class="col-md-2">
      <%= render 'searches/genre', genres: @genres %>
     </div>
-    <div class= 'col6'>
+    <div class= 'col-md-10 backimage-text'>
     　   <p class="text-center">
     　     ようこそ。ながのCAKEへ！</br>
     　     このサイトは、ケーキ販売のECさいとになります。</br>
@@ -11,13 +11,14 @@
     　     購入には会員登録が必要になります。
     　   </p>
     </div>
-  </div>　 
-</div>   
-<h2>新着商品</h2>
- <tbody>
-   <ty>
-     <td>
-       
-     </td>
-   </ty>
- </tbody>
+     <div class="mt-5">
+      <h3><strong>新着商品</strong></h3>
+       <div class="row mt-4">
+        <%= render 'public/items/index', items: @items %>
+       </div>
+          <p class="text-center mt-5">
+            <%= link_to 'すべての商品を見る', items_path, class: "item-index", style: "color: #3C2A21;" %>
+          </p>
+     </div>
+  </div>
+</div>
