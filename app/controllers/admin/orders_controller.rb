@@ -7,10 +7,10 @@ class Admin::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @item_orders = @order.order_details.all
+    @order_details = @order.order_details.all
     #商品の合計を算出
     @sum = 0
-    @subtotals = @item_orders.map { |order_detail| order_detail.price * order_detail.amount }
+    @subtotals = @order_details.map { |order_detail| order_detail.price * order_detail.amount }
     @sum = @subtotals.sum
   end
 

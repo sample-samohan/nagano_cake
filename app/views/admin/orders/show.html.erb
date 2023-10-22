@@ -34,9 +34,9 @@
       </table>
     </div>
   </div>
-  
+
   <div class="row">
-    <div class="col-xs-8"style="margin-top: 50px;">
+    <div class="col-8"style="margin-top: 50px;">
       <table class="table table-bordered">
         <thead>
           <tr class="table-head" style="background-color:#a7b19b;">
@@ -49,8 +49,39 @@
           </tr>
         </thead>
         <tbody>
+          <% @order_details.each do |order_detail| %>
           <tr>
-            
+            <td><%= order_detail.item.name %></td>
+            <td><%= order_detail.price %></td>
+            <td><%= order_detail.amount %></td>
+            <td><%= order_detail.price * order_detail.amount %></td>
+            <td><%= order_detail.production_status %></td>
+            <td>
+              <!--%= form_with(model: order_detail, url: admin_order_details_status_path, method: :patch, local: true) do |f| %>
+
+
+
+              <!% end %-->
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-4"style="margin-top: 120px;">
+      <table class="table">
+        <tbody>
+          <tr>
+            <th scope="row">商品合計</th>
+            <td><%= @sum %>円</td>
+          </tr>
+          <tr>
+            <th scope="row">送料</th>
+            <td><%= @order.postage %>円</td>
+          </tr>
+          <tr>
+            <th scope="row">請求金額</th>
+            <td><%= @sum + @order.postage %>円</td>
           </tr>
         </tbody>
       </table>
