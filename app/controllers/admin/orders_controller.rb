@@ -1,19 +1,19 @@
 class Admin::OrdersController < ApplicationController
   before_action :authenticate_admin!
-  
+
   def index
-    @orders = Order.all#page(params[:page]).per(10)
-  end  
- 
+    @orders = Order.page(params[:page]).per(8)
+  end
+
   def show
     @order = Order.find(params[:id])
-    @item_orders = @oreder.order_details.all
+    @item_orders = @order.order_details.all
     #商品の合計を算出
     @sum = 0
     @subtotals = @item_orders.map { |order_detail| order_detail.price * order_detail.amount }
     @sum = @subtotals.sum
   end
-  
+
   def update
   end
 

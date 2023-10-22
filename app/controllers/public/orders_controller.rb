@@ -83,9 +83,8 @@ class Public::OrdersController < ApplicationController
           @orderdetail = OrderDetail.new
           @orderdetail.order_id = @order.id
           @orderdetail.item_id = cart_item.item.id
-           @orderdetail.price = cart_item.item.add_tax_non_taxed_price
-           @orderdetail.amount = cart_item.amount
-           
+          @orderdetail.price = cart_item.item.add_tax_non_taxed_price
+          @orderdetail.amount = cart_item.amount
           @orderdetail.save!
         end
         @cart_items.destroy_all
@@ -101,7 +100,7 @@ class Public::OrdersController < ApplicationController
      else
         render :new
      end
-
+   end
 
     def index
       @orders = current_customer.orders.all.page(params[:page]).per(5).order(created_at: :DESC)

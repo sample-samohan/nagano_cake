@@ -17,7 +17,7 @@
         <tbody>
           <% @orders.each do |order| %>
             <tr>
-              <td><%= link_to order.created_at.strftime('%Y/%m/%d %H:%M:%S'), admins_order_path(order) %></td>
+              <td><%= link_to order.created_at.strftime('%Y/%m/%d %H:%M:%S'), admin_order_path(order) %></td>
               <td><%= order.customer.family_name %><%= order.customer.first_name %></td>
               <td>
                 <% @sum = 0 %>
@@ -27,12 +27,12 @@
                 <% end %>
                 <%= @sum %>
               </td>
-              <td><%= order.oreder_status %></td>
+              <!--td><!%= order.order_status %></td-->
             </tr>
           <% end %>
         </tbody>
       </table>
-      <!--p class="col-xs-3 col-xs-offset-5"><!%= paginate @orders %></p-->
+      <p class="col-xs-3 col-xs-offset-5"><%= paginate @orders %></p>
     </div>
   </div>
 </div>
