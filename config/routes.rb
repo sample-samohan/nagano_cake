@@ -53,7 +53,7 @@ root to: 'public/homes#top'
    resources :orders, only: [:index, :show, :new, :create] do
        collection do
          post 'confirm'
-         get 'completed'
+         get 'complete'
         end
     end    
    resources :items, only: [:index, :show]
