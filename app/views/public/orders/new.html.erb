@@ -4,7 +4,9 @@
 
     <h3>注文情報入力</h3>
 
-    <%= form_with model: Order.new, url: confirm_orders_path do |f|  %>
+
+    <%= form_with model: @order, url: confirm_orders_path, local:true do |f|  %>
+
 
       <table class="table">
         <tbody>
@@ -16,7 +18,7 @@
                 <%= f.radio_button :payment_method, :credit_card, checked: true %>
                 <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card], {value: :credit_card} %>
                 
-                <%= f.radio_button :payment_method, 1 %>
+                <%= f.radio_button :payment_method, :transfer %>
                 <%= f.label :payment_method, Order.payment_methods_i18n[:transfer], {value: :transfer} %>
 
               </div>
@@ -28,6 +30,10 @@
               <div class="radio">
                 <%= f.radio_button :address_type, "customer_address", checked: true %>
                 <%= f.label :address_type, "ご自身の住所" %>
+
+                <p>&emsp;<%= current_customer.post_code %><%= current_customer.address %></p>
+                <p>&emsp;<%= current_customer.family_name %><%= current_customer.first_name %></p>
+
               </div>
               <div class="radio">
                 <%= f.radio_button :address_type, [:registered_address] %>

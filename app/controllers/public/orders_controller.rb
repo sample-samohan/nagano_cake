@@ -3,12 +3,13 @@ class Public::OrdersController < ApplicationController
     
     def new
       @order = Order.new
-      @customer = Customer.find(current_customer.id)
     end
     
     def confirm
       @cart_items = CartItem.where(customer_id: current_customer.id)
+
       @postage = 800 #送料は800円で固定
+
       @selected_payment_method = params[:order][:payment_method]
       
       #商品合計額の計算
@@ -70,14 +71,13 @@ class Public::OrdersController < ApplicationController
         @order.post_code = current_customer.post_code
         @order.address = current_customer.address
         @order.name = current_customer.family_name + current_customer.first_name
-      
+
       when "registered_address"
         Address.find(params[:order][:registered_address_id])
         selected = Address.find(params[:order][:registered_address_id])
         @order.post_code = selected.post_code
         @order.address = selected.address
         @order.name = selected.name
-
       when "new_address"
         @order.post_code = params[:order][:new_post_code]
         @order.address = params[:order][:new_address]
@@ -85,6 +85,7 @@ class Public::OrdersController < ApplicationController
       end
     
      if @order.save
+
         
         @cart_items.each do |cart_item|
           @orderdetail = OrderDetail.new
@@ -107,16 +108,19 @@ class Public::OrdersController < ApplicationController
       #redirect_to complete_orders_path
      else
         render :new
+
      end
     end    
     
     def index
-      @orders = Order.where(custom_id: current_customer.id).order(created_at: :desc)
+      @orders = current_customer.orders.all.page(params[:page]).per(5).order(created_at: :DESC)
     end
     
     def show
-       @order = Order.find(params[:id])
-        @order_details= OrderDetail.where(order_id: @order.id)
+
+      @order = current_customer.orders.find(params[:id])
+      @order_details= OrderDetail.where(order_id: @order.id)
+
     end 
     
     def complete
