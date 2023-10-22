@@ -1,9 +1,9 @@
 <div class="container p-3">
   <div class="row">
-  
+
   <h3>注文情報確認</h3>
   <div class="col-md-12">
-    
+
 
     <table class="table">
       <tr>
@@ -12,9 +12,9 @@
         <td>数量</td>
         <td>小計</td>
       </tr>
-      
+
       <tr>
-        <% @cart_items.each do |cart_item| %>  
+        <% @cart_items.each do |cart_item| %>
           <td>
             <%= image_tag cart_item.item.image, size: "100x80" %>
             <strong><%= cart_item.item.name %></strong>
@@ -24,8 +24,8 @@
           <td><%= (cart_item.item.add_tax_non_taxed_price * cart_item.amount).to_s(:delimited)  %></td>
         <% end %>
       </tr>
-        
-      
+
+
     </table>
 
     <table class="table">
@@ -51,13 +51,13 @@
         銀行振込
       <% end %>
     </div>
-    
+
     <h4>お届け先</h4>
     <%= @selected_address %>
 
-    <%= form_with model: @order, url: completed_orders_path, method: :post do %>
+    <%= form_with model: @order, url: orders_path do %>
 
-      <%= hidden_field_tag 'order[pay_method]', @selected_pay_method %>
+      <%= hidden_field_tag 'order[payment_method]', @selected_pay_method %>
       <%= hidden_field_tag 'order[address_type]', @address_type %>
 
       <% if @address_type == "registered_address" %>
@@ -71,6 +71,6 @@
     <% end %>
   </div>
 
-    
+
   </div>
 </div>

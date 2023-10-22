@@ -21,7 +21,7 @@ root to: 'public/homes#top'
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
     resources :orders, only: [:show, :index]
-    
+
     #get 'customers/index'
     #get 'customers/edit'
     #get 'customers/update'
@@ -36,10 +36,10 @@ root to: 'public/homes#top'
   #namespace :admin do
     #get 'homes/top'
   end
-  
+
   scope module: :public do
  # customers
-   
+
    get  '/customers/mypage' => 'customers#show'
    get  '/customers/information/edit' => 'customers#edit'
    patch  '/customers/information' => 'customers#update'
@@ -53,22 +53,22 @@ root to: 'public/homes#top'
    resources :orders, only: [:index, :show, :new, :create] do
        collection do
          post 'confirm'
-         get 'completed'
+         get 'complete'
         end
-    end    
+    end
    resources :items, only: [:index, :show]
-    
+
    resources :cart_items, only: [:index, :update, :destroy, :create]
    delete 'cart_items_destroy_all'=> 'cart_items#destroy_all',as: "cart_items_destroy_all"
-    
+
    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
    # get 'orders/index'
-   
+
   end
 
-    
+
    get '/genre/search' => 'searches#genre_search'
-    
+
     #get 'orders/show'
     #get 'orders/new'
   #end
@@ -86,9 +86,9 @@ root to: 'public/homes#top'
 
 
 
-  
 
- 
+
+
 
 
 

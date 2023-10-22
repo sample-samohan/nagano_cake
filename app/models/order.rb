@@ -4,7 +4,10 @@ class Order < ApplicationRecord
     
     validates :payment_method, :name, :post_code, :address, presence: true
     
-  
+    def add_tax_non_taxed_price
+        (Item.non_taxed_price * 1.10).round
+    end
+    
    
    
    
