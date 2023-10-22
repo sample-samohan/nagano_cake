@@ -1,7 +1,8 @@
 class OrderDetail < ApplicationRecord
   belongs_to :order
-  belongs_to :items
+  belongs_to :item
+
   
-  enum payment_method: { credit_card: 0, transfer: 1 }
-  enum status: { waiting_for_payment: 0, confirmation_of_payment: 1, in_production: 2, preparing_to_ship: 3, shipped: 4  }
+  enum production_status: { unable_to_start: 0,waiting_for_production: 1,in_production: 2,completion_of_production: 3}
+
 end
