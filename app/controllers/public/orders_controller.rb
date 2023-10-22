@@ -93,7 +93,7 @@ class Public::OrdersController < ApplicationController
       
       #else
         #@cart_items.each do |cart_item|
-          OrderDetail.create!(order_id: @order.id, item_id: cart_item.item.id, price: cart_item.item.add_tax_non_taxed_price, amount: cart_item.amount, making_status: 1)
+         
         #end
       #end
       #@cart_items.destroy_all
