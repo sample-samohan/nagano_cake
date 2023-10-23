@@ -101,8 +101,8 @@ class Public::OrdersController < ApplicationController
      else
         render :new
      end
-    end    
-    
+    end
+
     def index
       @orders = Order.where(custom_id: current_customer.id).order(created_at: :desc)
     end
