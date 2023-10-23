@@ -1,5 +1,7 @@
 class Public::CartItemsController < ApplicationController
    
+  before_action :authenticate_customer!
+   
    def create
     @cart_items = current_customer.cart_items.all 
     if cart_items_params[:amount] != ""
@@ -7,7 +9,7 @@ class Public::CartItemsController < ApplicationController
         @cart_item_already = CartItem.find_by(item_id: params[:cart_item][:id].to_i)
         @cart_item_already.amount += params[:cart_item][:amount].to_i
         @cart_item_already.save
-        flash[:success] = "カートに商品を入れました"
+        flash[:notice] = "カートに商品を入れました"
         redirect_to cart_items_path
       else
         @cart_item = CartItem.new(
@@ -16,7 +18,7 @@ class Public::CartItemsController < ApplicationController
           customer_id: current_customer.id
         )
         @cart_item.save
-        flash[:success] = "カートに商品を入れました"
+        flash[:notice] = "カートに商品を入れました"
         redirect_to cart_items_path
       end
     else
@@ -39,16 +41,9 @@ class Public::CartItemsController < ApplicationController
     @cart_item = CartItem.find(params[:id])
     @cart_item.amount = params[:cart_item][:id]
     @cart_item.update(cart_items_params)
-    flash[:success] = '個数を変更しました'
+    flash[:notice] = '個数を変更しました'
     redirect_back(fallback_location: root_path)
   end
-  
-  #def destroy
-   # cart_items = CartItem.find_by(id: params[:id], item_id: current_customer.id)
-    #cart_items.destroy
-    #flash[:danger] = "カートから削除しました"
-    #redirect_to cart_items_path
-  #end
   
   def destroy
   cart_item = CartItem.find_by(id: params[:id], customer_id: current_customer.id)

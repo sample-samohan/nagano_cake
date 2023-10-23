@@ -1,0 +1,100 @@
+ <header style="background-color: #d9333f; color: #eaedf7;">
+       <!--<nav class="navbar navbar-expand">-->
+          <div class = "container-fluid ">
+              <div class="row mx-auto">
+                    <div class="col-3">
+                      <%= link_to root_path do %>
+                        <i class="fa-solid fa-apple-whole"></i>ながのCAKE
+                      <% end %>
+                    </div>
+                
+                    <!--admin login時header-->
+                    <div class="col-6">
+                        <ul class="row justify-content-end my-2 list-unstyled">
+                             <% if admin_signed_in? %>
+                            <li class="nav-item mx-2">
+                              <%= link_to admin_items_path do %>
+                                <i class="fa-solid fa-cookie-bite"></i>商品一覧
+                              <% end %>
+                            </li>
+                            <li class="nav-item mx-2">
+                              <%= link_to  admin_customers_path do %>
+                                    会員一覧
+                              <% end %>
+                            </li>
+                            <li class="nav-item mx-2">
+                              <%= link_to admin_orders_path do %>
+                                <i class="fa-solid fa-list"></i>注文履歴一覧
+                              <% end %>
+                            </li>
+                            <li class="nav-item mx-2">
+                              <%= link_to  admin_genres_path do %>
+                                <i class="fa-regular fa-clipboard"></i>ジャンル一覧
+                              <% end %>
+                            </li>
+                            <li class="nav-item mx-2">
+                              <%= link_to  destroy_admin_session_path, method: :delete do %>
+                                ログアウト
+                              <% end %>
+                            </li>
+                        </ul>
+                    </div>
+                   
+                  
+
+            <!--customer login時-->
+            <% elsif customer_signed_in? %> 
+              <ul class="navbar-nav mt-3 ">
+                <li class="customer_name mx-2">
+                  ようこそ！<%= current_customer.family_name %>さん
+                </li>
+                <li class="nav-item mx-2">
+                  <%= link_to customers_mypage_path do %>
+                    <i class="fa-solid fa-cake-candles"></i>マイページ
+                  <% end %>
+                </li>
+                <li class="nav-item mx-2">
+                  <%= link_to items_path do %>
+                    <i class="fa-solid fa-cookie-bite"></i>商品一覧
+                  <% end %>
+                </li>
+                <li class="nav-item mx-2">
+                  <%= link_to cart_items_path do %>
+                    <i class="fa-solid fa-cart-shopping"></i>カート
+                  <% end %>
+                </li>
+                <li class="nav-item mx-2">
+                  <%= link_to destroy_customer_session_path, method: :delete do %>
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>ログアウト
+                  <% end %>
+                </li>
+              </ul>
+              
+            　  
+            <% else %>
+              <ul class="navbar-nav mt-3">
+                <li class="nav-item mx-2">
+                  <%= link_to about_path do %>
+                    <i class="fa-solid fa-cake-candles"></i>アバウト
+                  <% end %>
+                </li>
+                <li class="nav-item mx-2">
+                  <%= link_to items_path do %>
+                    <i class="fa-solid fa-cookie-bite"></i>商品一覧
+                  <% end %>
+                </li>
+                <li class="nav-item mx-2">
+                  <%= link_to new_customer_registration_path do %>
+                    <i class="fa-solid fa-user-plus"></i>新規登録
+                  <% end %>
+                </li>
+                <li class="nav-item mx-2">
+                  <%= link_to new_customer_session_path do %>
+                    <i class="fa-solid fa-arrow-right-to-bracket"></i>ログイン
+                  <% end %>
+                </li>
+              </ul>
+            <% end %>
+          </div>
+       </nav>
+    </header>
