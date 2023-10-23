@@ -100,7 +100,7 @@ class Public::OrdersController < ApplicationController
      else
         render :new
      end
-   end
+    end
 
     def index
       @orders = current_customer.orders.all.page(params[:page]).per(5).order(created_at: :DESC)
