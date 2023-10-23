@@ -1,12 +1,12 @@
 <div class="container">
-  <div class="row mx-auto">
-    <div class="col-mx-3">
-      <!--%= render 'ジャンル検索', genres: @genres %-->
-    </div>
-    <div class="col-mx-3">
+  <div class="row">
+    
+    
+    
+    <div class="col-5">
       <%= image_tag(@item.image, size: "300x300") %>
     </div>
-    <div class="col-mx-4 offset-xs-2">
+    <div class="col-4 offset-xs-2">
       <h3><%= @item.name %></h3><br>
       <p><%= @item.explanation %></p><br>
       <h5>¥<%= (@item.non_taxed_price * 1.1).to_i %>（税込）</h5>
