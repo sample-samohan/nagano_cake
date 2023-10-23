@@ -13,18 +13,17 @@
         <td>小計</td>
       </tr>
 
-      <tr>
-        <% @cart_items.each do |cart_item| %>
+      <% @cart_items.each do |cart_item| %>
+        <tr>
           <td>
-            <%= image_tag cart_item.item.image, size: "100x80" %>
+            <%= image_tag cart_item.item.image, size: "80x80" %>
             <strong><%= cart_item.item.name %></strong>
           </td>
           <td><%= (cart_item.item.add_tax_non_taxed_price).to_s(:delimited)  %></td>
           <td><%= cart_item.amount %></td>
           <td><%= (cart_item.item.add_tax_non_taxed_price * cart_item.amount).to_s(:delimited)  %></td>
-        <% end %>
-      </tr>
-
+        </tr>
+      <% end %>
 
     </table>
 

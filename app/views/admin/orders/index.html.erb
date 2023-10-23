@@ -17,17 +17,18 @@
         <tbody>
           <% @orders.each do |order| %>
             <tr>
-              <td><%= link_to order.created_at.strftime('%Y/%m/%d %H:%M:%S'), admin_order_path(order) %></td>
+              <td><%= link_to order.created_at.strftime('%Y/%m/%d %H:%M:%S'), admin_order_path(order) %>
+                  <%= l order.created_at, format: :short %></td>
               <td><%= order.customer.family_name %><%= order.customer.first_name %></td>
               <td>
                 <% @sum = 0 %>
                 <% order.order_details.all.each do |order_detail| %>
                   <% @amount = order_detail.amount %>
-                  <%= @sum += @amount %>
+                  <% @sum += @amount %>
                 <% end %>
                 <%= @sum %>
               </td>
-              <td><%= order.status %></td>
+              <td><%= Order.statuses_i18n[order.status] %></td>
             </tr>
           <% end %>
         </tbody>
