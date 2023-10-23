@@ -3,16 +3,16 @@ class Customer < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-        
+
   # is_deletedがfalseならtrueを返すようにしている
   def active_for_authentication?
     super && (is_active == true)
-  end  
-  
+  end
+
   has_many :cart_items, dependent: :destroy
-  has_many :addresses, dependent: :destroy 
+  has_many :addresses, dependent: :destroy
   has_many :orders, dependent: :destroy
-  
+
   validates :family_name, presence: true, length: {maximum: 20}
   validates :first_name, presence: true, length: {maximum: 20}
   validates :family_name_kana, presence: true, length: {maximum: 20}, format: { with: /\p{katakana}/ } #全角カタカナのみ登録可能
