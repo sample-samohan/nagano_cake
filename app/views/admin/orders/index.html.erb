@@ -23,11 +23,11 @@
                 <% @sum = 0 %>
                 <% order.order_details.all.each do |order_detail| %>
                   <% @amount = order_detail.amount %>
-                  <%= @sum += @amount %>
+                  <% @sum += @amount %>
                 <% end %>
                 <%= @sum %>
               </td>
-              <td><%= order.status %></td>
+              <td><%= Order.statuses_i18n[order.status] %></td>
             </tr>
           <% end %>
         </tbody>
