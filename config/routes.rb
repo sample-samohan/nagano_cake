@@ -19,22 +19,16 @@ root to: 'public/homes#top'
     get 'homes/top' => 'homes#top'
     resources :items, only:[:index, :new, :create, :show, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update]
-    resources :customers, only: [:index, :show, :edit, :update]
-    resources :orders, only: [:show, :index]
-
-    #get 'customers/index'
-    #get 'customers/edit'
-    #get 'customers/update'
-    #get 'customers/show'
-  #end
-  #namespace :admin do
-    #get 'genres/index'
-    #get 'genres/create'
-    #get 'genres/edit'
-    #get 'genres/update'
-  #end
-  #namespace :admin do
-    #get 'homes/top'
+    resources :customers, only: [:index, :show, :edit, :update] do
+      member do
+        get "order"
+      end
+    end
+    resources :orders, only: [:show, :index, :update]
+    resources :order_details, only:[:update]
+    #patch "orders/status" => "orders#status_update"
+     #patch "orders/production_status" => "orders#production_status_update"
+   
   end
 
   scope module: :public do

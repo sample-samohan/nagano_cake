@@ -13,18 +13,25 @@ class Admin::OrdersController < ApplicationController
     @subtotals = @order_details.map { |order_detail| order_detail.price * order_detail.amount }
     @sum = @subtotals.sum
   end
-
+  
   def update
+   @order = Order.find(params[:id])
+   @order_details = @order.order_details
+   if @order.update(order_params)
+      @order_details.update_all(production_status: "waiting_for_production") if @order.status == "confirmation of payment"
+   end  
+   redirect_back(fallback_location: root_path)
+
   end
 
-  private
+ 
+ private
 
   def order_params
-    params.require(:order).permit(:post_code, :address, :name, :payment_method, :status, :posttage, :total_amount)
+    params.require(:order).permit(:status)
   end
 
-  def order_detail_params
-    params.require(:order_detail).permit(:production_status, :id)
-  end
+  
+   
 
 end
