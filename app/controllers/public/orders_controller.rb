@@ -92,7 +92,7 @@ class Public::OrdersController < ApplicationController
           @orderdetail.item_id = cart_item.item.id
           @orderdetail.price = cart_item.item.add_tax_non_taxed_price
           @orderdetail.amount = cart_item.amount
-           
+
           @orderdetail.save!
         end
         @cart_items.destroy_all
