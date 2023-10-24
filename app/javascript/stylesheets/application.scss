@@ -1,1 +1,32 @@
 @use '~bootstrap/scss/bootstrap';
+
+/* カスタムCSSファイル (custom.css) */
+.custom1-btn {
+    border-radius: 5px;  
+    background-color: #a0522d; /* カスタムの背景色を指定 */
+    border-color: #a0522d;/* カスタムのボーダーカラーを指定 */
+    box-shadow: 0 3px #8b0000;
+    position: relative;
+    top: -2px;
+    color: #ffffff; /* テキストのカラーを指定 */
+    padding: 10px 20px;
+    margin: 10px 10px;
+}
+
+.custom1-btn:hover {
+    background-color: #800000; /* ホバー時の背景色を指定 */
+    border-color: #800000; /* ホバー時のボーダーカラーを指定 */
+    color: #ffffff; /* ホバー時のテキストカラーを指定 */
+}
+
+.custom2-btn {
+    background-color: #a0522d; 
+    border-color: #a0522d; 
+    color: #ffffff; 
+}
+
+.custom2-btn:hover {
+    background-color: #800000;
+    border-color: #800000; 
+    color: #ffffff; 
+}
