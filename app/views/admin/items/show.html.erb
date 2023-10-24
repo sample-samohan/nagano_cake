@@ -1,16 +1,16 @@
 <div class="container mt-5 mb-5">
     <div class="row mb-3">
         <h2>商品詳細</h2>
-        
+
     </div>
-    
+
     <div class="row">
-         
+
         <div class="col-md3">
 
-            <%= image_tag @item.image, size: "250x250" %>
+            <%= image_tag @item.get_image(250,250) %>
         </div>
-        
+
         <div class="col-md8 offset-md-1">
             <table class="table table-hover table-inverse">
                 <tr>
@@ -34,7 +34,7 @@
                         <%= @item.add_tax_non_taxed_price.to_s(:dalimited) %>円
                         （<%= @item.non_taxed_price %>）
                     </td>
-                    
+
                 </tr>
                 <tr>
                     <th>販売ステータス</th>

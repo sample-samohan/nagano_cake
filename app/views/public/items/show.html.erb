@@ -4,7 +4,7 @@
     
     
     <div class="col-5">
-      <%= image_tag(@item.image, size: "300x300") %>
+      <%= image_tag @item.get_image(300,300) %>
     </div>
     <div class="col-4 offset-xs-2">
       <h3><%= @item.name %></h3><br>
