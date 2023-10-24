@@ -1,3 +1,13 @@
+#new-arrivals {
+  display: none; /* 初めは非表示 */
+  /* その他のスタイル設定 */
+}
+
+.show-new-arrivals {
+  display: block; /* 表示するクラス */
+}
+
+
 // Place all the styles related to the public/homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/

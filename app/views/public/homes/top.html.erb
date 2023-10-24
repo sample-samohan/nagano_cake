@@ -1,9 +1,29 @@
-<div class= 'container mt-5'>
+<style>
+ body {
+  margin: 0;
+  padding: 0;
+ }
+
+ .jumbotron {
+  height: 50vh;
+  background-repeat: no-repeat; /* 背景画像のリピートを無効にする */
+  background-size: cover; /* 背景画像をカバーする */
+  background-position: center center; /* 背景画像を中央に配置 */
+ }
+</style>
+
+<div class="jumbotron" style="background-image: url('<%= asset_path('cake_img/julia-peretiatko-oXfOK1ymtPU-unsplash.jpg') %>');">
+
+<div class= 'container'>
   <div class='row'>
-    <div class="col-md-2">
-     <%= render 'searches/genre', genres: @genres %>
-    </div>
-    <div class= 'col-md-10 backimage-text'>
+
+   <style>
+    .custom-backimage-text{
+     background-color: rgba( 255, 255, 255, 0.5); /* 背景色を半透明の白にする */}
+    }
+   </style>
+
+    <div class= 'col-md-4 custom-backimage-text'>
     　   <p class="text-center">
     　     ようこそ。ながのCAKEへ！</br>
     　     このサイトは、ケーキ販売のECさいとになります。</br>
@@ -11,14 +31,29 @@
     　     購入には会員登録が必要になります。
     　   </p>
     </div>
-     <div class="mt-5">
-      <h3><strong>新着商品</strong></h3>
+    <div class= 'col-md-6 backimage-text'></div>
+  </div>
+</div>
+
+</div>
+
+
+<div class= 'container mt-5'>
+  <div class="row">
+   <div class="col-3">
+     <%= render 'searches/genre', genres: @genres %>
+   </div>
+
+   <div class="col-9">
+     <h3><strong>新着商品</strong></h3>
        <div class="row mt-4">
-        <%= render 'public/items/index', items: @items %>
+
+          <%= render 'public/items/index', items: @items %>
+
        </div>
           <p class="text-center mt-5">
             <%= link_to 'すべての商品を見る', items_path, class: "item-index", style: "color: #3C2A21;" %>
           </p>
-     </div>
+   </div>
   </div>
 </div>
