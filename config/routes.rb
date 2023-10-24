@@ -24,10 +24,9 @@ root to: 'public/homes#top'
         get "order"
       end
     end
-    resources :orders, only: [:show, :index, :update]
-    resources :order_details, only:[:update]
-    #patch "orders/status" => "orders#status_update"
-     #patch "orders/production_status" => "orders#production_status_update"
+    resources :orders, only: [:show, :index]
+    patch "orders/status" => "orders#status_update"
+    patch "orders/production_status" => "orders#production_status_update"
    
   end
 
