@@ -4,7 +4,7 @@
     <p>
       <%= link_to item_path(item) do %>
        <div class="image-box">
-        <%= image_tag item.image,size: "200x200" %>
+        <%= image_tag item.get_image(200,200) %>
        </div>
       <% end %>
     </p>
