@@ -26,7 +26,7 @@
               <%= form_with model: @order, url: admin_orders_status_path(@order.id), method: :patch, local: true do |f| %>
                 <%= f.select :status, Order.statuses_i18n.invert %>
                 <%= f.hidden_field :id, :value => @order.id %>
-                <%= f.submit "更新", class:"btn btn-primary" %>
+                <%= f.submit "更新", class:"btn custom1-btn" %>
               <% end %>
             </td>
           </tr>
@@ -61,7 +61,7 @@
               　<%= f.select :production_status, OrderDetail.production_statuses_i18n.invert%>
 　　　　　　　　<%= f.hidden_field :id, :value => order_detail.id %>
                 <%= f.hidden_field :order_id, :value => @order.id %>
-                <%= f.submit "更新", class:"btn btn-primary" %>
+                <%= f.submit "更新", class:"btn custom1-btn" %>
               <% end %>
             </td>
           </tr>

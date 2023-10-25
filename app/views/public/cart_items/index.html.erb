@@ -27,7 +27,7 @@
 						<% end %>
 					</td>
 					<td><%= (Item.find(cart_item.item_id).non_taxed_price * 1.1 * cart_item.amount).to_i  %></td>
-					<td><%= link_to "削除する", cart_item_path(id: cart_item.id), method: :delete, class: "btn custom2-btn"  %></td>
+					<td><%= link_to "削除する", cart_item_path(id: cart_item.id), method: :delete, class: "btn custom1-btn"  %></td>
 				</tr>
 				<% end %>
 			</tbody>
