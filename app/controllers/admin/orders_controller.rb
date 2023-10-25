@@ -13,7 +13,7 @@ class Admin::OrdersController < ApplicationController
     @subtotals = @order_details.map { |order_detail| order_detail.price * order_detail.amount }
     @sum = @subtotals.sum
   end
-  
+
   def status_update
     @order = Order.find(params[:order][:id])
     if @order.update(params_int(order_params))
@@ -23,9 +23,9 @@ class Admin::OrdersController < ApplicationController
     else
       flash[:danger] = "注文ステータスの更新に失敗しました"
       redirect_back(fallback_location: root_path)
-    end  
+    end
   end
-  
+
   def production_status_update
     @order_detail = OrderDetail.find(params[:order_detail][:id])
     if @order_detail.update(params_int(order_detail_params))
@@ -40,17 +40,17 @@ class Admin::OrdersController < ApplicationController
     end
   end
 
- 
+
  private
 
   def order_params
     params.require(:order).permit(:status)
   end
-  
+
   def order_detail_params
     params.require(:order_detail).permit(:production_status, :id)
   end
-  
+
   # 以下２つは、update時formから送られてくる値がデフォルトでstringなのでintegerに変換するためのもの。まずはそもそも整数にできるか調べる（Integer()で変換できれば数値、例外発生したら違う）
   def integer_string?(str)
     Integer(str)
@@ -66,7 +66,7 @@ class Admin::OrdersController < ApplicationController
       end
     end
   end
-  
+
    # 注文ステータスが「入金確認」になったら紐づく製作ステータス全てを「製作待ち」に自動更新
   def status_is_deposited?(order)
     if order.status_before_type_cast == 1
@@ -76,7 +76,7 @@ class Admin::OrdersController < ApplicationController
       flash[:info] = "制作ステータスが制作待ちに更新されました"
     end
   end
-  
+
   # 製作ステータスが全部「製作完了」になったら注文ステータスが「発送準備中」に自動更新
   def production_status_is_completion_of_production?(order)
     if order.order_details.all? do |p|
@@ -86,7 +86,7 @@ class Admin::OrdersController < ApplicationController
       flash[:success] = "注文ステータスが「発送準備中に更新されました"
     end
   end
-  
+
   # 製作ステータスが一つでも「製作中」になったら注文ステータスが「製作中」に自動更新
   def production_status_is_in_production?(order_detail)
     if order_detail.production_status_before_type_cast == 2
