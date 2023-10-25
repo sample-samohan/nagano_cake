@@ -106,27 +106,10 @@ class Public::OrdersController < ApplicationController
     def index
       @orders = current_customer.orders.all.page(params[:page]).per(5).order(created_at: :DESC)
     end
-    def index
-      @orders = current_customer.orders.all.page(params[:page]).per(5).order(created_at: :DESC)
-    end
-    
-    def show
-<<<<<<<<< saved version
-
-    def index
-      @orders = current_customer.orders.all.page(params[:page]).per(5).order(created_at: :DESC)
-    end
-    def index
-      @orders = current_customer.orders.all.page(params[:page]).per(5).order(created_at: :DESC)
-    end
     
     def show
       @order = current_customer.orders.find(params[:id])
       @order_details= OrderDetail.where(order_id: @order.id)
-=========
-       @order = Order.find(params[:id])
-        @order_details= OrderDetail.where(order_id: @order.id)
->>>>>>>>> local version
     end 
     
     def complete
