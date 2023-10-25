@@ -89,8 +89,8 @@ class Admin::OrdersController < ApplicationController
   
   # 製作ステータスが一つでも「製作中」になったら注文ステータスが「製作中」に自動更新
   def production_status_is_in_production?(order_detail)
-    if order_detail.production_status_before_type_cast == "in_production"
-      order_detail.order.update(status: "in_production")
+    if order_detail.production_status_before_type_cast == 2
+      order_detail.order.update(status: 2)
       flash[:success] = "注文ステータスが「制作中」に更新されました"
     end
   end
