@@ -99,13 +99,13 @@ class Public::OrdersController < ApplicationController
         redirect_to complete_orders_path
          else
       render 'new'
-      end
+     end
     end
 
     def index
       @orders = current_customer.orders.all.page(params[:page]).per(5).order(created_at: :DESC)
     end
-   
+
     def show
       @order = current_customer.orders.find(params[:id])
       @order_details= OrderDetail.where(order_id: @order.id)
