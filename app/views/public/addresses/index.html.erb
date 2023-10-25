@@ -30,7 +30,7 @@
           </tr>
           <tr>
             <th>
-              <%= f.submit "登録する", class: "btn btn-success submit" %>    
+              <%= f.submit "登録する", class: "btn custom1-btn submit" %>    
             </th>
           </tr>
         </table>    
@@ -53,7 +53,7 @@
               <td><%= address.post_code %></td>
               <td><%= address.address %></td>
               <td><%= address.name %></td>
-              <td><%= link_to "編集する", edit_address_path(address.id), class: "btn btn-primary"  %></td>
+              <td><%= link_to "編集する", edit_address_path(address.id), class: "btn custom1-btn"  %></td>
               <td><%= link_to "削除する", address_path(address.id), class: "btn btn-danger", method: :delete %></td>
             </tr>
           <% end %>
