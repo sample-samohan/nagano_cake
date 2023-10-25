@@ -55,35 +55,12 @@ root to: 'public/homes#top'
    delete 'cart_items_destroy_all'=> 'cart_items#destroy_all',as: "cart_items_destroy_all"
 
    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
-   # get 'orders/index'
 
   end
 
 
    get '/genre/search' => 'searches#genre_search'
 
-    #get 'orders/show'
-    #get 'orders/new'
-  #end
-  #namespace :public do
-    #get 'cart_items/index'
-    #get 'cart_items/update'
-  #end
-  #namespace :public do
-    #get 'customers/show'
-    #get 'customers/edit'
-    #get 'customers/update'
-  #end
-  #namespace :public do
-    #get 'items/in
-
-
-
-
-
-
-
-
-
+   
 end
 
