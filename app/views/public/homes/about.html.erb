@@ -1,6 +1,21 @@
+<style>
+ body {
+  margin: 0;
+  padding: 0;
+ }
+
+ .jumbotron {
+  height: 50vh;
+  background-repeat: no-repeat; /* 背景画像のリピートを無効にする */
+  background-size: cover; /* 背景画像をカバーする */
+  background-position: center center; /* 背景画像を中央に配置 */
+ }
+</style>
+
+
 <div class= 'container'>
   <div class='row mt-5', style='margin: 0 auto;'>
-  <h1 style="margin: 0 auto;">About</h1>
+   <h1 style="margin: 0 auto;">About</h1>
   </div>
   <div class= row>
    <div class="container-fluid">
@@ -13,5 +28,7 @@
     </p>
     
    </div>
+   
   </div>
+  <div class="jumbotron" style="background-image: url('<%= asset_path('cake_img/julia-peretiatko-oXfOK1ymtPU-unsplash.jpg') %>');"></div>
 </div>

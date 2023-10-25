@@ -1,8 +1,8 @@
 <div class="container">
-    
+
     <div class="row login-row mt-5">
 	    <h2>ショッピングカート</h2>
-		<%= button_to 'カートを空にする', cart_items_destroy_all_path, method: :delete, data: {confirm: 'カートを空にして本当によろしいですか？'}, class: "btn btn-danger destroy-all" %>
+		<p class="ml-3"><%= button_to 'カートを空にする', cart_items_destroy_all_path, method: :delete, data: {confirm: 'カートを空にして本当によろしいですか？'}, class: "btn btn-danger destroy-all" %></p>
 	</div>
 	<div class="row">
 		<table class="table table-bordered cart-table">
@@ -27,7 +27,7 @@
 						<% end %>
 					</td>
 					<td><%= (Item.find(cart_item.item_id).non_taxed_price * 1.1 * cart_item.amount).to_i  %></td>
-					<td><%= link_to "削除する", cart_item_path(id: cart_item.id), method: :delete, class: "btn btn-danger"  %></td>
+					<td><%= link_to "削除する", cart_item_path(id: cart_item.id), method: :delete, class: "btn custom1-btn"  %></td>
 				</tr>
 				<% end %>
 			</tbody>
@@ -39,13 +39,15 @@
 			</tr>
 		</table>
 	</div>
-	<div class="col"><%= link_to "買い物を続ける", root_path, class: "btn btn-primary" %></div>
-	<div class="row justify-content-center">
+
+	<div class="row justify-content-center mb-3"><%= link_to "買い物を続ける", root_path, class: "btn btn-primary" %></div>
+	<div class="row justify-content-center mb-3">
+
 		<% if @cart_items.size == 0  %>
-			<%= link_to "情報入力に進む", cart_items_path, class: "btn btn-success go-to-order" %>
+			<%= link_to "情報入力に進む", cart_items_path, class: "btn custom1-btn" %>
 		<% else %>
-			<%= link_to "情報入力に進む", new_order_path, class: "btn btn-success go-to-order" %>
+			<%= link_to "情報入力に進む", new_order_path, class: "btn custom1-btn" %>
 		<% end %>
 	</div>
 </div>
-    
+

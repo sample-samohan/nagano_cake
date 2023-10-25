@@ -26,7 +26,7 @@
               <%= form_with model: @order, url: admin_orders_status_path(@order.id), method: :patch, local: true do |f| %>
                 <%= f.select :status, Order.statuses_i18n.invert %>
                 <%= f.hidden_field :id, :value => @order.id %>
-                <%= f.submit "更新", class:"btn btn-primary" %>
+                <%= f.submit "更新", class:"btn custom1-btn" %>
               <% end %>
             </td>
           </tr>
@@ -39,7 +39,7 @@
     <div class="col-8"style="margin-top: 50px;">
       <table class="table table-bordered">
         <thead>
-          <tr class="table-head" style="background-color:#a7b19b;">
+          <tr class="table-head" style="background-color:#eebbcd;">
             <th scope="col">商品名</th>
             <th scope="col">単価（税込）</th>
             <th scope="col">数量</th>
@@ -61,7 +61,7 @@
               　<%= f.select :production_status, OrderDetail.production_statuses_i18n.invert%>
 　　　　　　　　<%= f.hidden_field :id, :value => order_detail.id %>
                 <%= f.hidden_field :order_id, :value => @order.id %>
-                <%= f.submit "更新", class:"btn btn-primary" %>
+                <%= f.submit "更新", class:"btn custom1-btn" %>
               <% end %>
             </td>
           </tr>
@@ -81,7 +81,7 @@
             <td><%= @order.postage %>円</td>
           </tr>
           <tr>
-            <th scope="row">請求金額</th>
+            <th scope="row">請求金額合計</th>
             <td><%= @sum + @order.postage %>円</td>
           </tr>
         </tbody>

@@ -1,1 +1,26 @@
 @use '~bootstrap/scss/bootstrap';
+
+/* カスタムCSSファイル (custom.css) */
+.custom1-btn {
+    border-radius: 5px;
+    background-color: #806c57; /* カスタムの背景色を指定 */
+    position: relative;
+    top: -2px;
+    color: #ffffff; /* テキストのカラーを指定 */
+    margin: 10px 10px;
+}
+
+.custom1-btn:hover {
+    background-color: #5f3830; /* ホバー時の背景色を指定 */
+    color: #ffffff; /* ホバー時のテキストカラーを指定 */
+}
+
+.custom2-btn {
+    background-color: #806c57;
+    color: #ffffff;
+}
+
+.custom2-btn:hover {
+    background-color: #5f3830;
+    color: #ffffff;
+}
