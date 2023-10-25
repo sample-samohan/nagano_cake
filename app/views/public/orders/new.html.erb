@@ -11,7 +11,7 @@
               <div class="radio">
 
                 <%= f.radio_button :payment_method, :credit_card, checked: true %>
-                <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card], {value: :credit_card} %>    
+                <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card], {value: :credit_card} %>
                 <%= f.radio_button :payment_method, :transfer %>
                 <%= f.label :payment_method, Order.payment_methods_i18n[:transfer], {value: :transfer} %>
 
@@ -41,27 +41,27 @@
 
               <div class="field">
                   郵便番号(ハイフンなし)
-              </div>        
+              </div>
                 <%= f.text_field :new_post_code, placeholder: "0000000", class: "mt-1" %>
               </div>
-                  
+
               <div class="field">
                   住所
               </div>
               <div>
                 <%= f.text_field :new_address, class: "w-75", placeholder: "東京都新宿区1-2-3", class: "w-100 mr-1 ml-1" %>
-              </div>       
+              </div>
                 <div class="field">
                   宛名
                 </div>
                 <div>
                   <%= f.text_field :new_name, placeholder: "平成太郎", class: "mb-2 ml-1 mt-1" %>
-                </div> 
-          　
+                </div>
+
           </tr>
         </tbody>
       </table>
-        
+
       <div class="col-xs-offset-5">
         <%= f.submit "確認画面へ進む",class:"btn custom1-btn col-xs-3 " %>
       </div>

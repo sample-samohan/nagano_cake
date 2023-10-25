@@ -90,15 +90,9 @@ class Public::OrdersController < ApplicationController
           @orderdetail = OrderDetail.new
           @orderdetail.order_id = @order.id
           @orderdetail.item_id = cart_item.item.id
-<<<<<<< HEAD
-           @orderdetail.price = cart_item.item.add_tax_non_taxed_price
-           @orderdetail.amount = cart_item.amount
-           
-=======
           @orderdetail.price = cart_item.item.add_tax_non_taxed_price
           @orderdetail.amount = cart_item.amount
 
->>>>>>> 8ea5da44f99e0101032da588b9c29b244fc32954
           @orderdetail.save!
         end
         @cart_items.destroy_all
@@ -117,8 +111,22 @@ class Public::OrdersController < ApplicationController
     end
     
     def show
+<<<<<<<<< saved version
+
+    def index
+      @orders = current_customer.orders.all.page(params[:page]).per(5).order(created_at: :DESC)
+    end
+    def index
+      @orders = current_customer.orders.all.page(params[:page]).per(5).order(created_at: :DESC)
+    end
+    
+    def show
       @order = current_customer.orders.find(params[:id])
       @order_details= OrderDetail.where(order_id: @order.id)
+=========
+       @order = Order.find(params[:id])
+        @order_details= OrderDetail.where(order_id: @order.id)
+>>>>>>>>> local version
     end 
     
     def complete
