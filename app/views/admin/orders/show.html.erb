@@ -39,7 +39,7 @@
     <div class="col-8"style="margin-top: 50px;">
       <table class="table table-bordered">
         <thead>
-          <tr class="table-head" style="background-color:#a7b19b;">
+          <tr class="table-head" style="background-color:#eebbcd;">
             <th scope="col">商品名</th>
             <th scope="col">単価（税込）</th>
             <th scope="col">数量</th>
@@ -81,7 +81,7 @@
             <td><%= @order.postage %>円</td>
           </tr>
           <tr>
-            <th scope="row">請求金額</th>
+            <th scope="row">請求金額合計</th>
             <td><%= @sum + @order.postage %>円</td>
           </tr>
         </tbody>
